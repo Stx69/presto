@@ -65,14 +65,35 @@ User › User Details Read and Memberships Read. Install the Cloudflare GitHub A
 in a build (a preview branch included) could in the worst case redeploy any Worker in the account,
 the release-feed Worker among them. Clients verify the feed's Ed25519 signature, so the worst case
 on the updater path is a withheld or replayed older signed feed; on the landing it is altered
-download links. Only pushes to branches of this repository build: the owner and the release-bot
-App. Build variables are compiled into public bundles; never put a secret in one.
+download links. Builds come from pushes to branches of this repository (the owner and the
+release-bot App). Cloudflare's docs describe builds for pushes to the connected repository and say
+nothing about fork PRs, so fork exclusion is **unverified** until the cutover's fork check passes. Build variables are compiled into
+public bundles; never put a secret in one.
 `AZTEC_NODE_URL` defaults to the public testnet node at build time; set it only to override.
 
 **Rollback.** A dashboard or `wrangler rollback` is overwritten by the next production build.
 Revert the offending commit on `main` (preferred), or roll back and pause builds until the fix
 merges. Reverting this whole setup also means disconnecting Workers Builds, whose build command
 would otherwise run a deleted script.
+
+### Cutover from the Actions deploys
+
+1. Create the build token, scope the Cloudflare GitHub App to this repository, and connect both
+   Workers with the table above. If a "Set up Worker Previews" banner shows, complete it. A
+   production build of `main` may run on connect and fail before this setup merges; nothing deploys.
+2. Same-repository control: push an empty commit to a branch. Both preview builds must go green,
+   both Preview URLs must load, the playground's with `crossOriginIsolated === true` and COEP
+   `require-corp`, and its build log must show npm ≥ 11.
+3. Fork check, right after: from a fork you control, open a PR changing a file under `scripts/`
+   (watched by both Workers). Pass means that ten minutes later neither Worker's build list shows a
+   queued, running or finished build for the fork commit, and the PR carries no Workers Builds check
+   or comment. On failure, turn preview builds off on both Workers, cancel any fork build, and stop.
+   Skipping this check is an explicit, recorded owner decision.
+4. Merge. Both production builds on the merge commit must be green, and production must serve the
+   isolation headers and the pinned SDK.
+5. After a day of normal operation, revoke the old site token in Cloudflare, then
+   `gh secret delete CLOUDFLARE_DEPLOY_API_TOKEN` and `gh variable delete PRESTO_PREVIEWS_ENABLED`.
+   Until then, reverting the setup (and disconnecting Builds) restores the Actions path.
 
 ## Fork setup
 

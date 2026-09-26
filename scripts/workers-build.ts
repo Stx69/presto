@@ -1,8 +1,7 @@
 /**
- * The Workers Builds build command for both sites: `bun scripts/workers-build.ts <landing|playground>`.
- * Every branch-dependent decision lives here, so the dashboard holds only fixed strings. A production
- * playground build installs the pinned, provenance-verified published SDK; every other build uses
- * the workspace. Any failure exits non-zero, so nothing deploys and the previous version keeps serving.
+ * The Workers Builds build command: `bun scripts/workers-build.ts <landing|playground>`. Only a
+ * playground build of `main` installs the pinned, provenance-verified published SDK; every other
+ * build uses the workspace.
  */
 import { resolve } from "node:path";
 

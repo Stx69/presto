@@ -254,7 +254,7 @@ jobs:
           open="$(gh pr list --state open --limit 1000 --json number,headRefName,isCrossRepository \
             --jq '[.[] | select((.isCrossRepository | not) and (.headRefName | startswith("chore/playground-sdk-pin-"))) | "#\(.number)"] | join(" ")')"
           if [ -n "$open" ]; then
-            echo "::error::playground pin PR $open is still open: merge or close it, then re-run this job"
+            echo "::error::playground pin PR $open is still open: merge it, then re-run this job (closing it drops its versions)"
             exit 1
           fi
 

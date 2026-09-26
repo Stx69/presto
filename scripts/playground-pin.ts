@@ -1,7 +1,5 @@
 /**
- * The published SDK versions the production playground is built from. `release-sdk`'s
- * `bump-playground` job raises the pin through a bot PR with the CLI below; merging that PR is the
- * playground's deploy.
+ * Reads and raises the published SDK versions a production playground build installs.
  *
  * Usage: PRESTO_VERSION=<version|""> PRESTO_NOIR_VERSION=<version|""> bun scripts/playground-pin.ts
  * An empty variable leaves its package alone. Prints `changed` or `unchanged`.

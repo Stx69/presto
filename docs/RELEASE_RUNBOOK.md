@@ -287,9 +287,11 @@ the provenance statement and npm's signature audit vouched for; any mismatch fai
 previous deployment keeps serving. `@alejoamiras/presto-banners` is the exception: the playground
 bundles it from the workspace, and its published artifact is proven by the tarball-consumer gate.
 
-- **A pin PR is still open**: the job fails rather than stack a second bump. Merge or close that PR,
-  then use "Re-run failed jobs" on the release run; upstream outputs carry over and a fresh branch
-  is cut from `main`.
+- **A pin PR is still open**: the job fails rather than stack a second bump. Merge that PR (usually
+  it only needs "Update branch"), then use "Re-run failed jobs" on the release run; upstream outputs
+  carry over and a fresh branch is cut from `main`. Do not just close it: the re-run carries only
+  its own run's versions, so the closed PR's would be lost. If it must not merge, carry its versions
+  over with the manual fallback below.
 - **Manual fallback**: in a PR, run
   `PRESTO_VERSION=<version> PRESTO_NOIR_VERSION=<version> bun scripts/playground-pin.ts` (either may
   be empty). A deliberate move back to an older SDK is a hand-edited, reviewed pin.

@@ -95,6 +95,9 @@ describe("site deployment contract", () => {
       ...localModules("scripts/published-playground.ts"),
       "packages/playground/published-sdk.json",
       ".github/scripts/packaged-e2e-swap-sdk.sh",
+      // The swap script depends on the node_modules layout these select.
+      "bunfig.toml",
+      ".bun-version",
     ];
     expect(runs.filter((file) => !routed(file, published))).toEqual([]);
 
