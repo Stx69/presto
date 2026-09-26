@@ -21,6 +21,8 @@ describe("Cloudflare deployment contract", () => {
       expect(config).toContain('"directory": "./dist"');
       expect(config).toContain('"not_found_handling": "single-page-application"');
       expect(config).toContain('"preview_urls": true');
+      // Worker Previews refuse to run without this block, even an empty one.
+      expect(JSON.parse(config).previews).toEqual({});
     }
   });
 

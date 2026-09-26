@@ -8,13 +8,12 @@ dropped rather than carried — see "Closed by the sweep" at the bottom for what
 
 ## Dated — one cliff, 2026-11-30
 
-- **All ten dependency-audit exceptions expire on the same day.**
+- **All nine dependency-audit exceptions expire on the same day.**
   `scripts/dependency-audit-allowlist.json` accepts GHSA entries for `@opentelemetry/propagator-jaeger`,
-  `undici` (×3), `deepmerge-ts`, `extract-zip` (×2), `serialize-javascript`, `js-yaml` and `sharp`,
-  every one with `"expires": "2026-11-30"`. On 2026-12-01 the audit gate goes red on all ten at once.
-  Two are already fixable without upstream movement: js-yaml 4.3.2 only needs the release-age gate to
-  clear plus a lockfile refresh, and sharp 0.35.4 needs wrangler's miniflare to move. The rest are
-  pinned by Aztec 5.2 or the WebdriverIO stack. **Verified 2026-09-18.**
+  `undici` (×3), `deepmerge-ts`, `extract-zip` (×2), `serialize-javascript` and `js-yaml`, every one
+  with `"expires": "2026-11-30"`. On 2026-12-01 the audit gate goes red on all nine at once. js-yaml
+  4.3.2 only needs the release-age gate to clear plus a lockfile refresh; the rest are pinned by
+  Aztec 5.2 or the WebdriverIO stack. (sharp left with wrangler 4.135.) **Verified 2026-09-26.**
 
 ## Owner actions
 
