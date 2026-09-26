@@ -396,7 +396,7 @@ Contract tests:
 - `bun run lint:actions` exit 0; `bun run test` exit 0.
 - Layers: lint (incl. actionlint), typecheck, unit/contract.
 
-### Phase 4 — Docs
+### Phase 4 — Docs ✓
 `docs/CLOUDFLARE_DEPLOYMENT.md`: the dashboard settings table (below) as the source of truth, the
 custom token, the GitHub App scope, the account-wide boundary, cutover order, rollback (revert first;
 dashboard rollback only with builds paused; disconnect Builds if the migration itself is reverted).
