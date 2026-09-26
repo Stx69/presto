@@ -19,3 +19,8 @@ Codex session `01a0def8-017c-76d1-a9d2-61c3d3cd3049` (GPT-6 Astra, `high`), over
 
 Lesson: a widening accepted in a fix round must be re-checked against the plan's standing
 constraints (here, "never route on a file an Aztec bump edits"), not only against the finding.
+
+## Round 3 — `clean`
+
+No new material findings after `b4455f1`. Loop converged in three rounds (5 findings adopted, 0
+rejected; one adopted with a simpler fix than proposed).

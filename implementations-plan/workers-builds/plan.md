@@ -543,6 +543,15 @@ phase gates and the post-implementation loop.
 **Unresolved concerns carried to the owner**: the account-wide Workers boundary (A3), unobserved bot
 auto-merge (A2, I10), and fork behaviour pending the controlled check (I2).
 
+### Post-implementation codex loop (same model and effort) — converged `clean` in round 3
+
+Round 1: recovery by closing an open pin PR dropped its versions (runbook and error now say merge);
+the `published` filter missed install config; the deployment doc stated fork exclusion as fact and
+lacked the cutover; two headers narrated. Round 2: routing `bunfig.toml` (added in round 1) re-created
+the Aztec-bump deadlock, since that PR edits its excludes by hand; `bunfig.toml` is now on the
+must-not-route list instead of codex's proposed content-based exemption. Round 3: clean. All
+adopted; detail in `lessons/post-impl.md`.
+
 ## Seeds (final, 2026-09-25)
 
 ELI5 companion: Artifact https://claude.ai/artifact/Ky7aNW8NzXzCA926Gbo2uf, published from
