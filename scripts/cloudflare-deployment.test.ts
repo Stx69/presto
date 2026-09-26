@@ -95,13 +95,19 @@ describe("site deployment contract", () => {
       ...localModules("scripts/published-playground.ts"),
       "packages/playground/published-sdk.json",
       ".github/scripts/packaged-e2e-swap-sdk.sh",
-      // The swap script depends on the node_modules layout these select.
-      "bunfig.toml",
+      // The swap script depends on the node_modules layout this Bun lays out.
       ".bun-version",
     ];
     expect(runs.filter((file) => !routed(file, published))).toEqual([]);
 
-    const aztecBump = [...PACKAGE_JSON_FILES, ...HOST_DEPENDENCY_FILES, CRS_FILE, "bun.lock"];
+    // bunfig.toml: an Aztec bump edits its release-age excludes by hand.
+    const aztecBump = [
+      ...PACKAGE_JSON_FILES,
+      ...HOST_DEPENDENCY_FILES,
+      CRS_FILE,
+      "bun.lock",
+      "bunfig.toml",
+    ];
     expect(aztecBump.filter((file) => routed(file, published))).toEqual([]);
   });
 });

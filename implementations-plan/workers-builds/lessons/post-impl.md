@@ -10,3 +10,12 @@ Codex session `01a0def8-017c-76d1-a9d2-61c3d3cd3049` (GPT-6 Astra, `high`), over
 | 2 | [Medium] `published` filter misses `bunfig.toml`, whose isolated linker the swap script's paths depend on | **Adopted**, widened to `.bun-version` on the same reasoning | Both added to the filter and to the contract test's required list; neither is written by the Aztec updater |
 | 3 | [Medium] `CLOUDFLARE_DEPLOYMENT.md` states fork exclusion as fact and omits the cutover sequence the plan assigned it | **Adopted** (the plan's Phase 4 did list "cutover order") | Fork exclusion labelled unverified; a five-step cutover section added (control, fork check with stop rule, merge, delayed token revocation) |
 | 4 | [Low] File headers of `playground-pin.ts` and `workers-build.ts` narrate deployment mechanics | **Adopted** | Trimmed to usage/contract and the production-only invariant |
+
+## Round 2 — `findings`
+
+| # | Finding | Verdict | Why / fix |
+| --- | --- | --- | --- |
+| 1 | [Medium] Routing `bunfig.toml` (round-1 #2) re-creates the Aztec-bump deadlock: a bump that adds an `@aztec` transitive must edit `minimumReleaseAgeExcludes` by hand (`update-aztec-version.ts` says so; `bunfig-aztec-excludes.test.ts` enforces it) | **Adopted, simpler fix than proposed** (verified both files) | Codex proposed a content-based exemption; instead `bunfig.toml` leaves the filter and joins the contract test's must-not-route list. A linker change is rare and still fails closed on `main`. `.bun-version` stays routed (no Aztec bump edits it). Runbook notes that PRs on the production path wait out the fail-closed window too. Mutation-checked. |
+
+Lesson: a widening accepted in a fix round must be re-checked against the plan's standing
+constraints (here, "never route on a file an Aztec bump edits"), not only against the finding.

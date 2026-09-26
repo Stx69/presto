@@ -299,7 +299,8 @@ bundles it from the workspace, and its published artifact is proven by the tarba
   (the `@aztec/*` versions, the core version the adapters pin, the bb.js peer) matches the pinned
   publications. After an Aztec bump or a core version bump merges, playground builds of `main` fail
   (a red Workers Builds check on the commit) until the release that publishes the new graph merges
-  its pin PR. Landing builds are unaffected.
+  its pin PR. PRs that change the production build path (they run App's Published Playground Build)
+  wait for that release too. Landing builds are unaffected.
 
 `testnet` is the npm candidate dist-tag. The playground never reads a dist-tag; it builds from the pinned versions. It is not an npm network or a lesser form of the package. There is no separate `mainnet` publish path today: accepted candidates are deliberately promoted from `testnet` to npm's default `latest` tag. The old npm nightly publish path is retired; the historical `nightlies` dist-tag is left untouched.
 
