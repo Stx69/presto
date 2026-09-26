@@ -343,7 +343,7 @@ gate; add `"previews": {}` to both site configs; extend the wrangler-config asse
   allowlist edit).
 - Layers: lint, typecheck, unit, CLI smoke.
 
-### Phase 2 — Pin and build entry point
+### Phase 2 — Pin and build entry point ✓
 Add `packages/playground/published-sdk.json`, `scripts/playground-pin.ts`, `scripts/workers-build.ts`;
 switch `published-playground.ts` to the pin.
 
