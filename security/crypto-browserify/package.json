@@ -1,0 +1,7 @@
+{
+  "name": "crypto-browserify",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Stand-in for crypto-browserify. The published package depends on elliptic, which has no patched release.",
+  "main": "index.js"
+}
