@@ -90,7 +90,8 @@ None of these were re-checked on 2026-09-18.
 - **Every site build runs next to an account-wide Workers token (workers-builds A3)** — Workers
   Scripts Edit cannot be narrowed below the account, so build-time code on any branch of this repo
   could redeploy any Worker, the release-feed Worker included. Mitigated by `--ignore-scripts`, the
-  release-age floor, a narrowed custom token and a repo-scoped GitHub App; accepted by the owner
+  release-age floor and a repo-scoped GitHub App; the builds use Cloudflare's default token (a
+  narrower custom one is optional and would not change this boundary). Accepted by the owner
   2026-09-25. `workers-builds/plan.md` (Security)
 - **`@aztec/*` is exempt from the seven-day release-age floor** (owner decision 2026-08-18, 31 exact
   package names in `bunfig.toml`; a glob is silently ignored, and the list must cover the full
