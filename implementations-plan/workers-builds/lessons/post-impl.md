@@ -24,3 +24,16 @@ constraints (here, "never route on a file an Aztec bump edits"), not only agains
 
 No new material findings after `b4455f1`. Loop converged in three rounds (5 findings adopted, 0
 rejected; one adopted with a simpler fix than proposed).
+
+## Live preview check — passed 2026-09-27
+
+- Owner connected both Workers with the **default** build token (the custom one became optional
+  hardening; docs updated). No production build of `main` ran on connect.
+- Branch rebased onto `fe1b534` (#60 archived lna-consent; only `index.md` conflicted), pushed as
+  `8d555cd`. Check runs `Workers Builds: presto-landing` and `Workers Builds: presto-playground`:
+  both `success`. The check output carries only the dashboard build link, not the Preview URL (the
+  URL comes as a PR comment); the URL is `<branch>-<worker>.alejo-amiras.workers.dev`.
+- Landing preview: 200, `x-robots-tag: noindex`, COOP `same-origin`, no COEP. Playground preview:
+  200, `noindex`, COOP + COEP `require-corp`, `crossOriginIsolated === true` in headless Chromium.
+- Confirms I3 (npm ≥ 11 under `NODE_VERSION=24.20.0`: the preflight passed), I4 (`bunx wrangler
+  preview --config` is accepted as the Preview command) and I8 (Worker-name check from the root).
