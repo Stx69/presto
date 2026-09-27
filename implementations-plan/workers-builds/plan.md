@@ -5,7 +5,7 @@ driver: claude-code
 code_review: off
 eli5_mode: artifact
 harden: not scheduled (small CI/CD diff; the codex loop's adversarial pass covers it)
-status: APPROVED 2026-09-25 by the owner (A1–A3 resolved; fork check pending owner decision at cutover) — implementing
+status: implemented 2026-09-27 — PR open; live preview check passed; fork check skipped by the owner
 worktree: .claude/worktrees/workers-builds (branch worktree-workers-builds, rebased 2026-09-26 onto main @ b46898f)
 ---
 
@@ -314,10 +314,10 @@ credential, a malicious or equivocating registry.
   instead of auto-merging. Accepted; the owner clicks it (same as `bump-source` today).
 
 **Asks** — resolved by the owner on 2026-09-25: A1 owner does the Cloudflare side (step-by-step guide
-given in chat, mirrored in `docs/CLOUDFLARE_DEPLOYMENT.md`); A2 auto-merge **yes**; A3 **accepted**,
-with the narrowed token. Still open: the owner questioned whether the fork check is needed; the
-recommendation stands (cheap, rules out the worst outcome); decided at cutover, and recorded here as an
-accepted risk if skipped.
+given in chat, mirrored in `docs/CLOUDFLARE_DEPLOYMENT.md`); A2 auto-merge **yes**; A3 **accepted**.
+On 2026-09-27 the owner connected both Workers with Cloudflare's **default** build token (the custom
+token became optional hardening: it would not change the account-wide boundary) and **skipped the
+fork check**: I2 stays unverified and is recorded as accepted risk in `follow-ups.md`.
 
 Original asks:
 - A1. The owner performs the Cloudflare side (custom token, GitHub App scope, connect both Workers,

@@ -93,6 +93,10 @@ None of these were re-checked on 2026-09-18.
   release-age floor and a repo-scoped GitHub App; the builds use Cloudflare's default token (a
   narrower custom one is optional and would not change this boundary). Accepted by the owner
   2026-09-25. `workers-builds/plan.md` (Security)
+- **Fork PRs were never tested against Workers Builds (workers-builds I2)** — the owner skipped the
+  controlled fork check on 2026-09-27. Cloudflare documents builds for pushes to the connected
+  repository and says nothing about forks; if a fork PR ever shows a Workers Builds check, turn
+  preview builds off on both Workers. `docs/CLOUDFLARE_DEPLOYMENT.md` (Cutover, step 3)
 - **`@aztec/*` is exempt from the seven-day release-age floor** (owner decision 2026-08-18, 31 exact
   package names in `bunfig.toml`; a glob is silently ignored, and the list must cover the full
   resolved transitive graph). Aztec releases are consumed same-day by design, so for this scope
